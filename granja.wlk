@@ -14,6 +14,7 @@ object granja {
     }
 
     method cosechar(cultivo) {
+        cultivos.remove(cultivo)
         game.removeVisual(cultivo)
     }
 }

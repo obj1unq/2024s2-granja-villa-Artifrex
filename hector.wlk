@@ -27,18 +27,13 @@ object hector {
 	}
 	
 	method cultivar() {
-		//self.validarCultivar()
 		const cultivo = game.uniqueCollider(self)
+		cultivo.validarCultivar()
 		mochila.add(cultivo)
 		granja.cosechar(cultivo)
 	}
 
-/*	method validarCultivar() {
-		if (!granja.hayCultivoEn(position.x(), position.y())){
-			self.error("No hay nada para cultivar aquí")
-		}
-	}
-*/
+
 
 	method regar() {
 		const cultivo = game.uniqueCollider(self)
@@ -61,4 +56,5 @@ object hector {
 	method dineroJuntado() {
 		game.say(self, "Tengo " + ahorros + " monedas y " + mochila.sum() + " plantas para vender")
 	}
+
 }

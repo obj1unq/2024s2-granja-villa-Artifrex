@@ -12,8 +12,7 @@ program farmville {
 
 	//  VISUALES
  	game.addVisualCharacter(hector)
- 	//game.addVisual(new Maiz()) // Se agrega a modo de prueba
- 	
+
 	//MOVIMIENTO DE HECTOR
 	keyboard.w().onPressDo({hector.mover(arriba)})
 	keyboard.d().onPressDo({hector.mover(derecha)})

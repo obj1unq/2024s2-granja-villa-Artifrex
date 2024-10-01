@@ -19,6 +19,16 @@ class Maiz {
 	method valor() {
 		return 150
 	}
+
+	method validarCultivar() {
+		if(!self.esAdulto()) {
+			self.error("")
+		}
+	}
+
+	method esAdulto() {
+		return estado == "adult"
+	}
 }
 
 class Trigo {
@@ -34,6 +44,12 @@ class Trigo {
 
 	method valor() {
 		return (evolucion - 1) * 100
+	}
+
+	method validarCultivar() {
+		if(evolucion < 2) {
+			self.error("No estoy lista :)")
+		}
 	}
 }
 
@@ -58,5 +74,9 @@ class Tomate {
 
 	method valor() {
 		return 80
+	}
+
+	method validarCultivar() {
+
 	}
 }
