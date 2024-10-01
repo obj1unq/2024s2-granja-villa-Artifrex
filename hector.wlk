@@ -2,6 +2,7 @@ import wollok.game.*
 import cultivos.*
 import granja.*
 import movimientos.*
+import aspersores.*
 
 object hector {
 	var property position = game.center()
@@ -33,8 +34,6 @@ object hector {
 		granja.cosechar(cultivo)
 	}
 
-
-
 	method regar() {
 		const cultivo = game.uniqueCollider(self)
 		self.validarRiego()
@@ -55,6 +54,10 @@ object hector {
 
 	method dineroJuntado() {
 		game.say(self, "Tengo " + ahorros + " monedas y " + mochila.sum() + " plantas para vender")
+	}
+
+	method colocarAspersor() {
+		game.addVisual(new Aspersor())
 	}
 
 }

@@ -27,6 +27,7 @@ program farmville {
 	keyboard.c().onPressDo({hector.cultivar()})
 	keyboard.v().onPressDo({hector.vender()})
 	keyboard.space().onPressDo({hector.dineroJuntado()})
+	keyboard.e().onPressDo(hector.colocarAspersor())
 
  	//  COMIENZA
 	game.start()
