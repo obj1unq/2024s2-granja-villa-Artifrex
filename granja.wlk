@@ -11,6 +11,7 @@ object granja {
 
     method hayCultivoEn(x, y) {
         return cultivos.any({cultivo => cultivo.position().y() == y && cultivo.position().x() == x})
+        //horrible como pegarle a tu vieja esto, pero por ahora es lo que hay :/
     }
 
     method cosechar(cultivo) {

@@ -61,13 +61,14 @@ class Tomate {
 	}
 
 	method crecer() {
+		estado = ""	
 		self.validarMover()
 		position = position.up(1)
-		estado = ""	
+		
 	}
 
 	method validarMover() {
-		if(granja.hayCultivoEn(self.position().x() + 1, self.position().y())) {
+		if(granja.hayCultivoEn(self.position().x(), self.position().y() + 1)) {
 			self.error("")
 		}
 	}

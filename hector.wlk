@@ -3,13 +3,14 @@ import cultivos.*
 import granja.*
 import movimientos.*
 import aspersores.*
+import mercados.*
 
 object hector {
 	var property position = game.center()
 	const property image = "player.png"
 	var ahorros = 0
 
-	const mochila = []
+	const property mochila = []
 
 	method mover(direccion) {
 		position = direccion.siguiente(position)
@@ -22,7 +23,7 @@ object hector {
 	}
 
 	method validarSembrar() {
-		if (granja.hayCultivoEn(position.x(), position.y())){
+		if (granja.hayCultivoEn(self.position().x(), self.position().y())){
 			self.error("No puedo sembrar ahi, ya hay un cultivo")
 		}
 	}
@@ -41,23 +42,56 @@ object hector {
 	}
 	
 	method validarRiego() {
-		if (!granja.hayCultivoEn(position.x(), position.y())){
+		if (!granja.hayCultivoEn(self.position().x(), self.position().y())){
 			self.error("No hay nada para regar aquí")
 		}
 	}
 
 	method vender() {
-		const valorTotalCosecha = mochila.sum({cultivo => cultivo.valor()})
-		ahorros += valorTotalCosecha
+		self.validarVender()
+		const mercado = game.uniqueCollider(self)
+		ahorros += self.valorTotalDeCosecha()
+		mercado.comprarMercaderia()
 		mochila.clear()
 	}
 
+	method validarVender() {
+		if(!self.hayMercadoAca(self.position())) {
+			self.error("Tengo que estar en un mercado para poder vender")
+		}
+	}
+
+	method hayMercadoAca(posicion) {
+		return //preguntar como hacer para devolver la posicion de algun mercado
+	}
+
+	method valorTotalDeCosecha() {
+		return mochila.sum({cultivo => cultivo.valor()})
+	}
+
 	method dineroJuntado() {
-		game.say(self, "Tengo " + ahorros + " monedas y " + mochila.sum() + " plantas para vender")
+		game.say(self, "Tengo " + ahorros + " monedas y " + mochila.size() + " plantas para vender")
 	}
 
 	method colocarAspersor() {
-		game.addVisual(new Aspersor())
+		const aspersor = new Aspersor()
+		//self.validarColocar()
+		game.addVisual(aspersor)
+		aspersor.agregarObjetos()
+		game.onTick(1000, "regar alrededor", {aspersor.regarPlantas()})
 	}
 
+	method validarColocar() {
+		if(self.hayAlgoAca()) {
+			self.error("No puedo colocarlo, está ocupado")
+		}
+	}
+
+	method hayAlgoAca() {
+		return //preguntar como hacer esto NO ME SALE UFA
+	}
+
+	method crecer() {
+
+	}
 }
