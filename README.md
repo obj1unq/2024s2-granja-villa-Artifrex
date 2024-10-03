@@ -1,5 +1,11 @@
 # Granjavilla
 
+// Falta hacer(de mi pa mi):
+- Que el tomate no suba si hay x cosa en la posicion de arriba
+- Que el aspersor riegue, porque no está   regando
+- Test
+- Algo mas que no me acuerdo que funcionaba mal
+
 ### Intro
 Héctor es un granjero que se gana la vida cultivando plantas de distintas especies.
 Para ello tiene que sembrar, regar y cosechar sus cultivos de su granja. Después de la cosecha, Héctor vende lo que cultivó, obteniendo ganancias en la forma de monedas de oro.

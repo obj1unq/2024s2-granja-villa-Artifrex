@@ -1,6 +1,8 @@
 import wollok.game.*
 import hector.*
 import cultivos.*
+import movimientos.*
+import mercados.*
 
 program farmville {
 	//  CONFIG	
@@ -9,10 +11,29 @@ program farmville {
 	game.width(10)
 	game.ground("ground.png")
 
-	//  VISUALES
- 	game.addVisualCharacter(hector)
- 	game.addVisual(new Maiz()) // Se agrega a modo de prueba
- 	
+	//  VISUALES	
+
+	game.addVisual(new Mercado(position = game.at(2,9), oroDisponible = 1500))
+	game.addVisual(new Mercado(position = game.at(4,9), oroDisponible = 300))
+	game.addVisual(new Mercado(position = game.at(6,9), oroDisponible = 737))
+	
+	game.addVisualCharacter(hector)
+	// MOVIMIENTO DE HECTOR
+	keyboard.w().onPressDo({hector.mover(arriba)})
+	keyboard.d().onPressDo({hector.mover(derecha)})
+	keyboard.s().onPressDo({hector.mover(abajo)})
+	keyboard.a().onPressDo({hector.mover(izquierda)})
+
+	// ACCIONES DE HECTOR
+	keyboard.m().onPressDo({hector.sembrar(new Maiz())})
+	keyboard.t().onPressDo({hector.sembrar(new Trigo())})
+	keyboard.o().onPressDo({hector.sembrar(new Tomate())})
+	keyboard.r().onPressDo({hector.regar()})
+	keyboard.c().onPressDo({hector.cultivar()})
+	keyboard.v().onPressDo({hector.vender()})
+	keyboard.space().onPressDo({hector.dineroJuntado()})
+	keyboard.e().onPressDo({hector.colocarAspersor()})
+
  	//  COMIENZA
 	game.start()
 }
