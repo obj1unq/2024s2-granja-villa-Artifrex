@@ -68,7 +68,7 @@ class Tomate {
 	}
 
 	method validarMover() {
-		if(granja.hayCultivoEn(self.position().x(), self.position().y() + 1)) {
+		if(granja.hayCultivoEn(self.position().x(), self.position().y() + 1) ) {
 			self.error("")
 		}
 	}

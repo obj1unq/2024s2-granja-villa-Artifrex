@@ -5,8 +5,10 @@ import movimientos.*
 import aspersores.*
 import mercados.*
 
+//hay mucho codigo repetido, pero como me cuesta BOCHA entender game,
+// por ahora lo dejo asi hasta que comprenda mejor
 object hector {
-	var property position = game.center()
+	var property position = game.at(5,6)
 	const property image = "player.png"
 	var ahorros = 0
 
@@ -48,22 +50,23 @@ object hector {
 	}
 
 	method vender() {
-		self.validarVender()
-		const mercado = game.uniqueCollider(self)
-		ahorros += self.valorTotalDeCosecha()
+		//self.validarVender() -> ahora esta en el mercado
+		const mercado = game.uniqueCollider(self) //esto me dice si hay una unica cosa (en este caso el mercado) en la posicion de hector
 		mercado.comprarMercaderia()
+		ahorros += self.valorTotalDeCosecha()		
 		mochila.clear()
 	}
 
-	method validarVender() {
+/*	method validarVender() {
 		if(!self.hayMercadoAca(self.position())) {
 			self.error("Tengo que estar en un mercado para poder vender")
 		}
 	}
 
 	method hayMercadoAca(posicion) {
-		return //preguntar como hacer para devolver la posicion de algun mercado
-	}
+		return game.colliders(self)
+	} 
+*/
 
 	method valorTotalDeCosecha() {
 		return mochila.sum({cultivo => cultivo.valor()})
@@ -75,7 +78,7 @@ object hector {
 
 	method colocarAspersor() {
 		const aspersor = new Aspersor()
-		//self.validarColocar()
+		self.validarColocar()
 		game.addVisual(aspersor)
 		aspersor.agregarObjetos()
 		game.onTick(1000, "regar alrededor", {aspersor.regarPlantas()})
@@ -88,7 +91,7 @@ object hector {
 	}
 
 	method hayAlgoAca() {
-		return //preguntar como hacer esto NO ME SALE UFA
+		return game.colliders(self) > 0 // ??
 	}
 
 	method crecer() {

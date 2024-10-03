@@ -11,13 +11,13 @@ program farmville {
 	game.width(10)
 	game.ground("ground.png")
 
-	//  VISUALES
- 	game.addVisualCharacter(hector)
+	//  VISUALES	
 
 	game.addVisual(new Mercado(position = game.at(2,9), oroDisponible = 1500))
 	game.addVisual(new Mercado(position = game.at(4,9), oroDisponible = 300))
 	game.addVisual(new Mercado(position = game.at(6,9), oroDisponible = 737))
-
+	
+	game.addVisualCharacter(hector)
 	// MOVIMIENTO DE HECTOR
 	keyboard.w().onPressDo({hector.mover(arriba)})
 	keyboard.d().onPressDo({hector.mover(derecha)})
